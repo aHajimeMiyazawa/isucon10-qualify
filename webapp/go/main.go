@@ -71,6 +71,7 @@ type Estate struct {
 	DoorWidth   int64   `db:"door_width" json:"doorWidth"`
 	Features    string  `db:"features" json:"features"`
 	Popularity  int64   `db:"popularity" json:"-"`
+	PopularityDesc  int64 `db:"popularity_desc" json:"-"`
 }
 
 //EstateSearchResponse estate/searchへのレスポンスの形式
@@ -290,6 +291,8 @@ func initialize(c echo.Context) error {
 		filepath.Join(sqlDir, "0_Schema.sql"),
 		filepath.Join(sqlDir, "1_DummyEstateData.sql"),
 		filepath.Join(sqlDir, "2_DummyChairData.sql"),
+		filepath.Join(sqlDir, "mod/index_nazotte.sql"),
+		filepath.Join(sqlDir, "mod/idx_low_priced.sql"),
 	}
 
 	for _, p := range paths {
